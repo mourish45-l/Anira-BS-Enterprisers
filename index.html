@@ -2,285 +2,744 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anira BS Enterprises</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJ9z6KqI0kR0FkYI6j8Yh63fN5/QjW9n/kM3P3y/zQ3I0x5w3Q2F3R9Z0R9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <!-- Custom Configuration for Tailwind -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary': '#0F172A', // Deep Slate/Navy
-                        'accent': '#14B8A6', // Teal
-                        'secondary-accent': '#F59E0B', // Amber/Gold
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        shimmer: {
-                            '0%': { backgroundPosition: '-1000px 0' },
-                            '100%': { backgroundPosition: '1000px 0' },
-                        },
-                        subtleGlow: {
-                            '0%, 100%': { 'box-shadow': '0 0 10px rgba(20, 184, 166, 0.4)' },
-                            '50%': { 'box-shadow': '0 0 20px rgba(20, 184, 166, 0.8)' },
-                        },
-                        // New keyframe for subtle movement
-                        bounceSubtle: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-3px)' },
-                        }
-                    },
-                    animation: {
-                        fadeInUp: 'fadeInUp 1s ease-out forwards',
-                        shimmer: 'shimmer 3s infinite linear',
-                        subtleGlow: 'subtleGlow 3s ease-in-out infinite',
-                        // New animation applied to the CTA icon
-                        bounceSubtle: 'bounceSubtle 1.5s ease-in-out infinite',
-                    }
-                }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ANIRA BS ENTERPRISES | Madurai's Premier Architectural & Interior Solutions</title>
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts (preserved as fallback but primary font will be Apple Chancery) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,500&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* --- PREMIUM FONT: APPLE CHANCERY (Full Website) --- */
+        /* The entire website will use Apple Chancery as primary font, with elegant fallbacks */
+        body, h1, h2, h3, h4, p, a, li, span, div, button, input, textarea, select, 
+        .navbar, .hero, .service-card, .quality-section, .footer, .contact-grid,
+        .section-title, .hero-tagline, .hero-desc, .btn-primary, .service-list li,
+        .quality-feature, .identity-wrapper, .gst-badge, .info-item, .contact-form,
+        .footer-col, .footer-bottom, .floating-wa, .whatsapp-btn, .nav-cta a,
+        .logo h1, .logo span, .cursive-accent, .brand-cursive, .hero-badge,
+        .award-badge, .quality-text p, .hours, .platform-icons a {
+            font-family: 'Apple Chancery', 'Apple Chancherry', 'Comic Sans MS', 'Chalkboard SE', 'Snell Roundhand', 'Zapfino', cursive !important;
+            font-weight: normal;
+            letter-spacing: 0.01em;
+        }
+
+        /* Ensure Font Awesome icons keep their original font family (override protection) */
+        i, .fas, .far, .fab, .fa-solid, .fa-regular, .fa-brands, [class*="fa-"] {
+            font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", sans-serif !important;
+        }
+        .fab {
+            font-family: "Font Awesome 6 Brands" !important;
+        }
+        .fas, .far, .fa-solid, .fa-regular {
+            font-family: "Font Awesome 6 Free" !important;
+            font-weight: 900;
+        }
+
+        /* Slight adjustment for better readability with Apple Chancery */
+        body {
+            background-color: #fefcf7;
+            color: #1e2a2f;
+            line-height: 1.55;
+            scroll-behavior: smooth;
+            font-size: 1rem;
+        }
+
+        /* Premium accent colors & shadows */
+        :root {
+            --gold: #C9A03D;
+            --gold-dark: #A47C2E;
+            --charcoal: #1E2A2F;
+            --slate: #2C3E3E;
+            --warm-white: #FDF9F2;
+            --shadow-sm: 0 10px 30px -12px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 20px 35px -12px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* navbar */
+        .navbar {
+            background: rgba(255, 253, 248, 0.96);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.02);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(201, 160, 61, 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 32px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo h1 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e2a2f 30%, #C9A03D 80%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            display: block;
+            color: #5D6E6B;
+        }
+
+        .nav-cta a {
+            background: var(--charcoal);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .nav-cta a:hover {
+            background: var(--gold);
+            color: #1e2a2f;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(105deg, #FCF8F0 0%, #F5EFE3 100%), url('https://www.transparenttextures.com/patterns/arches.png');
+            padding: 70px 0 90px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-content {
+            text-align: center;
+            max-width: 880px;
+            margin: 0 auto;
+        }
+        .hero-badge {
+            background: rgba(201, 160, 61, 0.12);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gold-dark);
+            margin-bottom: 20px;
+            backdrop-filter: blur(4px);
+        }
+        .hero h1 {
+            font-size: 3.6rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            color: var(--charcoal);
+        }
+        .hero-tagline {
+            font-size: 1.7rem;
+            font-weight: 500;
+            color: #7a5c2c;
+            margin-bottom: 24px;
+        }
+        .hero-desc {
+            font-size: 1.15rem;
+            color: #3c4b48;
+            max-width: 700px;
+            margin: 0 auto 32px;
+        }
+        .btn-primary {
+            background: var(--gold);
+            color: var(--charcoal);
+            border: none;
+            padding: 14px 38px;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            box-shadow: 0 10px 18px -8px rgba(0,0,0,0.2);
+        }
+        .btn-primary:hover {
+            background: var(--gold-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 18px 28px -12px rgba(0,0,0,0.25);
+            color: white;
+        }
+
+        /* Section styles */
+        section {
+            padding: 80px 0;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+            color: var(--charcoal);
+        }
+        .section-sub {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 56px;
+            color: #5a6f6b;
+            font-size: 1.1rem;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 36px;
+        }
+        .service-card {
+            background: white;
+            border-radius: 32px;
+            padding: 32px 28px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(201, 160, 61, 0.2);
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--gold);
+        }
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 24px;
+        }
+        .service-card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .service-list {
+            list-style: none;
+            margin-top: 14px;
+        }
+        .service-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: #3b4b47;
+        }
+        .service-list li i {
+            color: var(--gold);
+            width: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* quality Section */
+        .quality-section {
+            background: #1E2A2F;
+            color: #FEFCF5;
+        }
+        .quality-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        .quality-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 28px;
+            color: #e2ddd4;
+        }
+        .quality-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: space-between;
+        }
+        .quality-feature {
+            flex: 1;
+            background: rgba(255,255,240,0.05);
+            padding: 24px 20px;
+            border-radius: 28px;
+            backdrop-filter: blur(2px);
+            border-left: 4px solid var(--gold);
+        }
+        .quality-feature i {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+        .quality-feature h4 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        /* Business identity card */
+        .identity-wrapper {
+            background: linear-gradient(125deg, #fffaf2 0%, #ffffff 100%);
+            border-radius: 48px;
+            padding: 48px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #ebdfcf;
+        }
+        .identity-wrapper h3 {
+            font-size: 1.9rem;
+            font-weight: 700;
+        }
+        .gst-badge {
+            background: #1e2a2f;
+            color: var(--gold);
+            padding: 12px 28px;
+            border-radius: 60px;
+            display: inline-block;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin: 20px 0 8px;
+        }
+
+        /* Contact Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            background: white;
+            border-radius: 44px;
+            box-shadow: var(--shadow-md);
+            padding: 48px;
+            margin-top: 20px;
+        }
+        .contact-info h3, .contact-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+        .info-item i {
+            width: 42px;
+            height: 42px;
+            background: #f1ede5;
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--gold-dark);
+        }
+        .hours p {
+            margin: 8px 0;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            margin-bottom: 20px;
+            border: 1px solid #e0d6ca;
+            border-radius: 28px;
+            background: #fefcf9;
+            transition: 0.2s;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201,160,61,0.2);
+        }
+        .contact-form button {
+            background: var(--charcoal);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .contact-form button:hover {
+            background: var(--gold);
+            color: #1e2a2f;
+        }
+        .whatsapp-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #111C1F;
+            color: #CFDCD8;
+            padding: 60px 0 30px;
+            margin-top: 40px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+        .footer-col h4 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        .footer-col p, .footer-col a {
+            color: #bccec7;
+            text-decoration: none;
+            line-height: 1.7;
+        }
+        .footer-col a:hover {
+            color: var(--gold);
+        }
+        .platform-icons a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #1e2a2f;
+            padding: 8px 18px;
+            border-radius: 40px;
+            margin-right: 12px;
+            margin-bottom: 12px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            border: 1px solid rgba(201,160,61,0.3);
+            transition: all 0.2s;
+        }
+        .platform-icons a i {
+            font-size: 1.1rem;
+        }
+        .platform-icons a:hover {
+            background: var(--gold);
+            color: #111C1F;
+            border-color: var(--gold);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(201,160,61,0.25);
+            padding-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                padding: 32px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero-tagline {
+                font-size: 1.3rem;
+            }
+            .container {
+                padding: 0 24px;
+            }
+            .section-title {
+                font-size: 2rem;
             }
         }
-    </script>
-    <style>
-        /* Custom CSS for a sleek, dark theme */
-        body {
-            background-color: #0F172A; /* primary color */
-            color: #E2E8F0; /* Off-white text */
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .services-grid {
+                gap: 24px;
+            }
+            .quality-features {
+                flex-direction: column;
+            }
         }
-        .shimmer-text {
-            background: linear-gradient(90deg, #F59E0B 0%, #FFFFFF 50%, #F59E0B 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% 100%;
-            animation: shimmer 3s infinite linear;
+        .award-badge {
+            background: linear-gradient(120deg, #f9eec1, #f7e3b0);
+            border-radius: 34px;
+            padding: 8px 24px;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-bottom: 28px;
+            color: #7a5800;
         }
-        .card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateY(0);
+        .floating-wa {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: #25D366;
+            padding: 14px 18px;
+            border-radius: 60px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
         }
-        .card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            border-color: #14B8A6; /* accent */
+        .floating-wa i {
+            font-size: 1.6rem;
         }
-        .cta-button {
-            transition: all 0.3s ease;
-            box-shadow: 0 4px #0e9389; /* Darker accent for depth */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
         }
-        .cta-button:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px #0e9389;
+        .fade-up {
+            animation: fadeUp 0.6s ease forwards;
         }
     </style>
 </head>
-<body class="font-sans antialiased">
+<body>
 
-    <!-- Header & Navigation -->
-    <header class="sticky top-0 z-50 bg-primary/95 backdrop-blur-md shadow-lg border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <!-- Updated Logo Text -->
-            <a href="#" class="text-3xl font-bold text-accent tracking-wider">ANIRA BS ENTERPRISES</a>
-            <nav class="space-x-4 hidden md:flex">
-                <a href="#services" class="text-gray-300 hover:text-secondary-accent transition-colors">Services</a>
-                <a href="#about" class="text-gray-300 hover:text-secondary-accent transition-colors">Why Choose Us</a>
-                <a href="#contact" class="text-gray-300 hover:text-secondary-accent transition-colors">Contact</a>
-            </nav>
+<!-- Floating WhatsApp CTA -->
+<a href="https://wa.me/918220304194?text=Hello%20ANIRA%20BS%20ENTERPRISES,%20I'm%20interested%20in%20your%20architectural%20solutions." class="floating-wa" target="_blank">
+    <i class="fab fa-whatsapp"></i> <span>Chat with us</span>
+</a>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <h1>ANIRA BS <span>ENTERPRISES</span></h1>
+            <span class="cursive-accent" style="font-size:0.75rem;">engineering excellence · design mastery</span>
         </div>
-    </header>
-
-    <!-- Hero Section - Award-Winning Focus -->
-    <section id="hero" class="relative overflow-hidden pt-16 pb-24 md:pt-24 md:pb-36">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span class="text-sm font-semibold uppercase tracking-widest text-secondary-accent opacity-0 animate-fadeInUp" style="animation-delay: 0.2s;">
-                Madurai's Premier Architectural & Interior Solutions
-            </span>
-            <h1 class="mt-4 text-5xl sm:text-7xl lg:text-8xl font-extrabold leading-tight opacity-0 animate-fadeInUp" style="animation-delay: 0.5s;">
-                <span class="block text-white">Engineering Excellence.</span>
-                <span class="block shimmer-text mt-2">Design Mastery.</span>
-            </h1>
-            <p class="mt-6 max-w-3xl mx-auto text-xl text-gray-400 opacity-0 animate-fadeInUp" style="animation-delay: 0.8s;">
-                Anira BS Enterprises delivers custom, high-quality fabrication, glazing, structural, and interior design solutions that set industry benchmarks.
-            </p>
-            <a href="#services" class="mt-10 inline-block px-10 py-4 text-lg font-bold text-primary bg-accent rounded-xl cta-button hover:bg-teal-300 transition-all transform opacity-0 animate-fadeInUp" style="animation-delay: 1.1s;">
-                <!-- Added subtle bounce animation to the icon -->
-                <i class="fas fa-hammer mr-2 inline-block animate-bounceSubtle"></i> Explore Our Award-Tier Services
-            </a>
+        <div class="nav-cta">
+            <a href="#contact"><i class="fas fa-phone-alt"></i> Get in touch</a>
         </div>
-    </section>
+    </div>
+</nav>
 
-    <!-- Services Section - Animated Cards -->
-    <section id="services" class="py-20 bg-gray-900 border-t border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-extrabold text-white text-center mb-12">Our Core Expertise</h2>
+<!-- Hero -->
+<section class="hero">
+    <div class="container hero-content fade-up">
+        <div class="hero-badge"><i class="fas fa-award"></i> Madurai's Premier Architectural & Interior Solutions</div>
+        <h1>ANIRA BS ENTERPRISES</h1>
+        <div class="hero-tagline">Engineering Excellence. Design Mastery.</div>
+        <p class="hero-desc">Anira BS Enterprises delivers custom, high-quality fabrication, glazing, structural, and interior design solutions that set industry benchmarks.</p>
+        <a href="#services" class="btn-primary"><i class="fas fa-trophy"></i> Explore Our Award-Tier Services</a>
+    </div>
+</section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Service Card 1: Structural & Fabrication -->
-                <div class="card bg-gray-800 p-8 rounded-2xl border-2 border-transparent hover:border-accent">
-                    <i class="fa-solid fa-hard-hat text-4xl text-accent mb-4"></i>
-                    <h3 class="text-2xl font-semibold mb-3 text-white">Structural & Fabrication</h3>
-                    <ul class="text-gray-400 space-y-2 text-sm">
-                        <li><i class="fas fa-wrench mr-2 text-gray-500"></i> Aluminium fabrication</li>
-                        <li><i class="fas fa-layer-group mr-2 text-gray-500"></i> Structural glazing</li>
-                        <li><i class="fas fa-building mr-2 text-gray-500"></i> Aluminium Cladding</li>
-                        <li><i class="fas fa-drafting-compass mr-2 text-gray-500"></i> Structural design work</li>
-                    </ul>
-                </div>
-
-                <!-- Service Card 2: Interior & Furnishings -->
-                <div class="card bg-gray-800 p-8 rounded-2xl border-2 border-transparent hover:border-accent" style="animation-delay: 0.1s;">
-                    <i class="fa-solid fa-chair text-4xl text-secondary-accent mb-4"></i>
-                    <h3 class="text-2xl font-semibold mb-3 text-white">Interior Finishing & Blinds</h3>
-                    <ul class="text-gray-400 space-y-2 text-sm">
-                        <li><i class="fas fa-table mr-2 text-gray-500"></i> Custom Made office, conference table</li>
-                        <li><i class="fas fa-blinds mr-2 text-gray-500"></i> Interior, vertical, Venetian blinds, awnings</li>
-                        <li><i class="fas fa-ceiling mr-2 text-gray-500"></i> All types of false ceiling</li>
-                        <li><i class="fas fa-paint-roller mr-2 text-gray-500"></i> Painting work</li>
-                    </ul>
-                </div>
-
-                <!-- Service Card 3: Specialized Glazing Systems -->
-                <div class="card bg-gray-800 p-8 rounded-2xl border-2 border-transparent hover:border-accent" style="animation-delay: 0.2s;">
-                    <i class="fa-solid fa-glass-half-full text-4xl text-teal-400 mb-4"></i>
-                    <h3 class="text-2xl font-semibold mb-3 text-white">Advanced Glass & Glazing</h3>
-                    <ul class="text-gray-400 space-y-2 text-sm">
-                        <li><i class="fas fa-window-restore mr-2 text-gray-500"></i> All types of glass system work</li>
-                        <li><i class="fas fa-grip-lines-vertical mr-2 text-gray-500"></i> Glazing work</li>
-                        <li><i class="fas fa-check-circle mr-2 text-gray-500"></i> Bespoke custom solutions</li>
-                    </ul>
-                </div>
-
+<!-- Core Expertise Services -->
+<section id="services">
+    <div class="container">
+        <div class="award-badge"><i class="fas fa-star-of-life"></i> 2025 Innovation Leaders · Quality assured</div>
+        <h2 class="section-title">Our Core <span style="color: var(--gold);">Expertise</span></h2>
+        <p class="section-sub">Precision fabrication, bespoke interiors, advanced glazing — crafted for visionaries.</p>
+        
+        <div class="services-grid">
+            <!-- Structural & Fabrication -->
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-hard-hat"></i></div>
+                <h3>Structural & Fabrication</h3>
+                <ul class="service-list">
+                    <li><i class="fas fa-check-circle"></i> Aluminium fabrication</li>
+                    <li><i class="fas fa-check-circle"></i> Structural glazing</li>
+                    <li><i class="fas fa-check-circle"></i> Aluminium Cladding</li>
+                    <li><i class="fas fa-check-circle"></i> Structural design work</li>
+                </ul>
+            </div>
+            <!-- Interior Finishing & Blinds -->
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-couch"></i></div>
+                <h3>Interior Finishing & Blinds</h3>
+                <ul class="service-list">
+                    <li><i class="fas fa-check-circle"></i> Custom made office & conference tables</li>
+                    <li><i class="fas fa-check-circle"></i> Interior, vertical, Venetian blinds, awnings</li>
+                    <li><i class="fas fa-check-circle"></i> All types of false ceiling</li>
+                    <li><i class="fas fa-check-circle"></i> Painting work</li>
+                </ul>
+            </div>
+            <!-- Advanced Glass & Glazing -->
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-window-maximize"></i></div>
+                <h3>Advanced Glass & Glazing</h3>
+                <ul class="service-list">
+                    <li><i class="fas fa-check-circle"></i> All types of glass system work</li>
+                    <li><i class="fas fa-check-circle"></i> Glazing work</li>
+                    <li><i class="fas fa-check-circle"></i> Bespoke custom solutions</li>
+                </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- About Section - Value Proposition -->
-    <section id="about" class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:flex lg:items-center lg:space-x-12">
-                <div class="lg:w-1/2">
-                    <span class="text-sm font-semibold uppercase tracking-widest text-accent mb-3 block">
-                        Our Commitment to Quality
-                    </span>
-                    <h2 class="text-4xl font-extrabold text-white mb-6">
-                        The Foundation of Great Design
-                    </h2>
-                    <p class="text-lg text-gray-400 mb-6">
-                        We are Anira BS Enterprises, a dedicated partner in transforming commercial and residential spaces. Our comprehensive service list covers everything from intricate aluminium fabrication and structural designs to custom interior furnishings and painting work.
-                    </p>
-                    <p class="text-lg text-gray-400 mb-8">
-                        Every project we undertake is executed with precision, ensuring longevity and compliance with the highest standards of quality and aesthetics.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex items-center text-white">
-                            <i class="fas fa-medal text-accent mr-3"></i> Expertise in complex structural design
-                        </div>
-                        <div class="flex items-center text-white">
-                            <i class="fas fa-compass-drafting text-accent mr-3"></i> Versatility across interior and exterior systems
-                        </div>
-                        <div class="flex items-center text-white">
-                            <i class="fas fa-hands-helping text-accent mr-3"></i> Commitment to timely and transparent service
-                        </div>
-                    </div>
+<!-- Commitment to Quality -->
+<section class="quality-section">
+    <div class="container quality-container">
+        <div class="quality-text">
+            <h2 class="section-title" style="color: #FEF3DF;">The Foundation of Great Design</h2>
+            <p>We are Anira BS Enterprises, a dedicated partner in transforming commercial and residential spaces. Our comprehensive service list covers everything from intricate aluminium fabrication and structural designs to custom interior furnishings and painting work. Every project we undertake is executed with precision, ensuring longevity and compliance with the highest standards of quality and aesthetics.</p>
+        </div>
+        <div class="quality-features">
+            <div class="quality-feature"><i class="fas fa-drafting-compass"></i><h4>Expertise in complex structural design</h4><p>Years of mastery in load-bearing & modern glazing structures.</p></div>
+            <div class="quality-feature"><i class="fas fa-exchange-alt"></i><h4>Versatility across systems</h4><p>Interior & exterior harmony, blending blinds, glass, and metalwork.</p></div>
+            <div class="quality-feature"><i class="fas fa-clock"></i><h4>Timely & transparent service</h4><p>Ethical workflows, on-time delivery, clear communication.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Business Identity (Govt. Registered not displayed) -->
+<section>
+    <div class="container">
+        <div class="identity-wrapper">
+            <i class="fas fa-building" style="font-size: 2.8rem; color: var(--gold); margin-bottom: 15px; display: inline-block;"></i>
+            <h3>Our Business Identity</h3>
+            <p style="font-size: 1.4rem; font-weight: 600; margin: 8px 0;">ANIRA BS ENTERPRISES</p>
+            <div class="gst-badge"><i class="fas fa-receipt"></i> GSTN: 33BRDPB9409H1Z1</div>
+            <p style="margin-top: 18px;"><i class="fas fa-map-marker-alt"></i> Madurai, Tamil Nadu - 625011</p>
+        </div>
+    </div>
+</section>
+
+<!-- Let's Build Together + Contact -->
+<section id="contact">
+    <div class="container">
+        <h2 class="section-title">Let's Build <span style="color: var(--gold);">Together</span></h2>
+        <p class="section-sub">Get in touch to discuss your next ambitious project — from concept to completion, we deliver excellence.</p>
+        
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3><i class="fas fa-handshake"></i> Connect with us</h3>
+                <div class="info-item"><i class="fas fa-phone-alt"></i> <div><strong>Call / WhatsApp</strong><br>+91 82203 04194 <br>+91 70109 44659</div></div>
+                <div class="info-item"><i class="fas fa-envelope"></i> <div><strong>Email</strong><br>anirabsenterprises@gmail.com</div></div>
+                <div class="info-item"><i class="fas fa-clock"></i> <div class="hours"><strong>Business Hours</strong><br>Mon - Sat: 9:00 AM - 7:00 PM<br>Sunday: 10:00 AM - 5:00 PM</div></div>
+                <div class="info-item"><i class="fas fa-location-dot"></i> <div><strong>Madurai Headquarters</strong><br>D.no 87/3 Jeevanagar 1st Street, Kalaignar Cross Street, Madurai, Tamil Nadu - 625011.</div></div>
+                <div class="whatsapp-row">
+                    <a href="https://wa.me/918220304194" target="_blank" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> WhatsApp 82203 04194</a>
+                    <a href="tel:+917010944659" class="whatsapp-btn" style="background:#2C3E3E;"><i class="fas fa-phone"></i> Call 70109 44659</a>
                 </div>
-                <div class="lg:w-1/2 mt-10 lg:mt-0">
-                    <div class="p-8 rounded-2xl bg-gray-800 border border-gray-700 animate-subtleGlow">
-                        <h3 class="text-2xl font-semibold mb-4 text-secondary-accent">Our Business Identity</h3>
-                        <dl class="space-y-3 text-gray-300">
-                            <div class="flex flex-col">
-                                <dt class="font-medium text-white">Business Name:</dt>
-                                <dd>Anira BS Enterprises</dd>
-                            </div>
-                            <div class="flex flex-col">
-                                <dt class="font-medium text-white">GSTN:</dt>
-                                <dd>33BRDPB9409H1Z1</dd>
-                            </div>
-                        </dl>
-                    </div>
-                </div>
+            </div>
+            <div class="contact-form">
+                <h3><i class="fas fa-pen-ruler"></i> Request a consultation</h3>
+                <form id="quickForm">
+                    <input type="text" placeholder="Your name" id="nameField" required>
+                    <input type="email" placeholder="Email address" id="emailField" required>
+                    <textarea rows="3" placeholder="Tell us about your project (fabrication / interiors / glazing...)" id="msgField"></textarea>
+                    <button type="submit" id="submitBtn"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    <p style="font-size: 0.75rem; margin-top: 12px;">We’ll reach out within 24 hours</p>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-900 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-extrabold text-white text-center mb-4">Let's Build Together</h2>
-            <p class="text-xl text-gray-400 text-center mb-12">Get in touch to discuss your next ambitious project.</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-                
-                <!-- Hours Card (Staggered Animation) -->
-                <div class="p-6 rounded-xl bg-gray-800 border border-gray-700 hover:border-secondary-accent transition-colors opacity-0 animate-fadeInUp" style="animation-delay: 0.2s;">
-                    <i class="fa-regular fa-clock text-4xl text-accent mb-3"></i>
-                    <h4 class="font-semibold text-lg text-white mb-2">Business Hours</h4>
-                    <div class="space-y-1 text-sm text-gray-400">
-                        <p class="font-medium text-white">Mon - Sat:</p>
-                        <p>9:00 AM - 7:00 PM</p>
-                        <p class="font-medium text-white mt-2">Sunday:</p>
-                        <p>10:00 AM - 5:00 PM</p>
-                    </div>
+<!-- Footer: Only WhatsApp and IndiaMART as per requirement, no portfolio/gallery links -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4><i class="fas fa-gem"></i> ANIRA BS ENTERPRISES</h4>
+                <p>Setting the standard in fabrication and interior design. Madurai's most trusted partner for modern architectural solutions.</p>
+                <div class="platform-icons" style="margin-top: 20px;">
+                    <a href="https://wa.me/918220304194" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="https://m.indiamart.com/company/150673275/?pos=1&kwd=anira%20bs%20enterprises&tags=rk:O|||||dtp:c||sv:VGP|rsf:cmp||ri:VGP_O_NA_NP|em:1-|-qr_nm:gd-cmp|cs:15653|res:RC1-R1|com-cf:hh|ptrs:na|ktp:N0|mtp:no|qry_typ:C|lang:en|wc:4|lcf:-1|qrd:260506|mrd:260506|prdt:260506|qcr:1|qm:o|gli:U0G1I1|gc:chennai|ic:Chennai|emt:1/" target="_blank" rel="noopener noreferrer"><i class="fas fa-industry"></i> IndiaMART</a>
                 </div>
-
-                <!-- Address Card (Staggered Animation) -->
-                <div class="p-6 rounded-xl bg-gray-800 border border-gray-700 hover:border-secondary-accent transition-colors opacity-0 animate-fadeInUp" style="animation-delay: 0.4s;">
-                    <i class="fa-solid fa-location-dot text-4xl text-secondary-accent mb-3"></i>
-                    <h4 class="font-semibold text-lg text-white mb-2">Location</h4>
-                    <p class="text-sm text-gray-400">D.no 87/3 Jeevanagar 1st Street, Kalaignar Cross Street, Madurai, Tamil Nadu -625011.</p>
-                </div>
-
-                <!-- Email Card (Staggered Animation) -->
-                <div class="p-6 rounded-xl bg-gray-800 border border-gray-700 hover:border-secondary-accent transition-colors opacity-0 animate-fadeInUp" style="animation-delay: 0.6s;">
-                    <i class="fa-solid fa-envelope text-4xl text-accent mb-3"></i>
-                    <h4 class="font-semibold text-lg text-white mb-2">Email Us</h4>
-                    <a href="mailto:anirabsenterprises@gmail.com" class="text-accent hover:underline">anirabsenterprises@gmail.com</a>
-                </div>
-
-                <!-- WhatsApp Card (Staggered Animation) -->
-                <div class="p-6 rounded-xl bg-gray-800 border border-gray-700 hover:border-secondary-accent transition-colors opacity-0 animate-fadeInUp" style="animation-delay: 0.8s;">
-                    <i class="fa-brands fa-whatsapp text-4xl text-white mb-3"></i>
-                    <h4 class="font-semibold text-lg text-white mb-2">WhatsApp/Call</h4>
-                    <a href="tel:8220304194" class="text-accent block hover:underline">82203 04194</a>
-                    <a href="tel:7010944659" class="text-accent block hover:underline">70109 44659</a>
-                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <p><a href="#services"><i class="fas fa-chevron-right" style="font-size: 10px;"></i> Core Expertise</a></p>
+                <p><a href="#contact"><i class="fas fa-chevron-right"></i> Contact & Support</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Reach Out</h4>
+                <p><i class="fas fa-phone-alt"></i> +91 82203 04194</p>
+                <p><i class="fab fa-whatsapp"></i> +91 70109 44659</p>
+                <p><i class="fas fa-envelope"></i> anirabsenterprises@gmail.com</p>
+                <p><i class="fas fa-map-pin"></i> Madurai, Tamil Nadu - 625011</p>
+            </div>
+            <div class="footer-col">
+                <h4>GST Credentials</h4>
+                <p><strong>GSTIN:</strong> 33BRDPB9409H1Z1</p>
+                <p><strong>Verified Business</strong></p>
+                <p><i class="fas fa-trophy"></i> Excellence in Fabrication | Quality Assured</p>
             </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-primary pt-12 pb-6 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left border-b border-gray-700 pb-8 mb-6">
-                <div class="mb-4 md:mb-0">
-                    <h3 class="text-2xl font-bold text-accent">Anira BS Enterprises</h3>
-                    <p class="text-gray-400 text-sm">Setting the standard in fabrication and interior design.</p>
-                </div>
-                <div class="space-y-2 text-sm text-gray-400">
-                    <p>GSTN: 33BRDPB9409H1Z1</p>
-                    <p>Madurai, Tamil Nadu - 625011</p>
-                </div>
-            </div>
-            
-            <!-- Design Credit -->
-            <div class="text-center text-sm text-gray-500">
-                &copy; 2025 Anira BS Enterprises. All rights reserved. 
-                <span class="block mt-1">Design by <span class="text-teal-400 font-semibold">Mourish Developers</span></span>
-            </div>
+        <div class="footer-bottom">
+            <div>ANIRA BS ENTERPRISES — Setting the benchmark in fabrication & interior design.</div>
+            <div>Design by <span style="color: var(--gold); font-weight: 500;">Mourish Developers</span> | <i class="fas fa-hard-hat"></i> Built with precision</div>
         </div>
-    </footer>
+    </div>
+</footer>
 
+<!-- WhatsApp-based form handling -->
+<script>
+    const WHATSAPP_NUMBER = '918220304194';
+
+    const contactForm = document.getElementById('quickForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('nameField').value.trim();
+            const email = document.getElementById('emailField').value.trim();
+            const message = document.getElementById('msgField').value.trim();
+
+            if (!name) { alert('Please enter your name.'); return; }
+            if (!email) { alert('Please enter your email address.'); return; }
+            if (!message) { alert('Please share details about your project.'); return; }
+
+            const whatsappMessage = `*New enquiry from ANIRA BS ENTERPRISES website*%0A%0A` +
+                                    `*Name:* ${encodeURIComponent(name)}%0A` +
+                                    `*Email:* ${encodeURIComponent(email)}%0A` +
+                                    `*Message:* ${encodeURIComponent(message)}`;
+
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`;
+
+            window.open(whatsappUrl, '_blank');
+            contactForm.reset();
+            alert(`Thank you ${name}! You will be redirected to WhatsApp to send your message.`);
+        });
+    }
+
+    // Smooth scroll for all # links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
 </body>
 </html>
-
